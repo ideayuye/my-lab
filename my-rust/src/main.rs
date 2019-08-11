@@ -13,6 +13,31 @@ impl User {
     }
 }
 
+#[derive(Debug)]
+enum IpAddrKind {
+    V4,
+    V6
+}
+
+enum Coin {
+    Penny,
+    Nickel,
+    Dime,
+    Quarter,
+}
+
+fn value_in_cents(coin: Coin) -> u8 {
+    match coin {
+        Coin::Penny => {
+            println!("just test");
+            1
+        },
+        Coin::Nickel => 5,
+        Coin::Dime => 10,
+        Coin::Quarter => 25,
+    }
+}
+
 fn main() {
     let user1 = User {
         email: String::from("someone@example.com"),
@@ -24,4 +49,10 @@ fn main() {
 
     println!("Hello, world! {:?}", user1);
     println!("result: {}", user1.area());
+
+    let six = IpAddrKind::V6;
+    println!("values: {:?}", six);
+
+    let res = value_in_cents(Coin::Penny);
+    println!("enum match {}", res);
 }

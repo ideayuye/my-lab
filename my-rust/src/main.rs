@@ -55,4 +55,7 @@ fn main() {
 
     let res = value_in_cents(Coin::Penny);
     println!("enum match {}", res);
+
+    let someone1 = Some(3);
+    println!("someone {:?}", someone1);
 }

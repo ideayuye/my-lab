@@ -1,0 +1,17 @@
+{
+  "name": "l7",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@antv/l7": "^2.2.37",
+    "tailwindcss": "^1.8.10"
+  },
+  "devDependencies": {},
+  "keywords": [],
+  "description": ""
+}

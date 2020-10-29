@@ -30,8 +30,22 @@ class LinkQueue{
         return this.add(0, ele);
     }
 
+    remove(index) {
+        if (!Number.isInteger(index) || index >= this.size || index < 1) {
+            return -1;
+        }
+        let cur = this.dummyHead;
+        for(let i = 0 ; i < index - 1; i++) {
+            cur = cur.next;
+        }
+        const temp = cur.next;
+        cur.next = cur.next.next;
+        this.size --;
+        return temp;
+    }
+
     getSize() {
-        return 
+        return this.size;
     }
 
     toString() {
@@ -49,4 +63,9 @@ link1.addLast('b');
 link1.addLast('b1');
 link1.addLast('c');
 
+link1.toString();
+console.log('--------')
+
+link1.remove(3);
+link1.remove(2);
 link1.toString();

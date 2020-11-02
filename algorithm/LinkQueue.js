@@ -22,6 +22,18 @@ class LinkQueue{
         this.size ++;
     }
 
+    findRecursion(head, index, count = -1) {
+        count ++;
+        if (count === index) {
+            return head
+        }
+        return this.findRecursion(head.next, index, count);
+    }
+
+    find(index) {
+        return this.findRecursion(this.dummyHead, index);
+    }
+
     addLast(ele) {
         return this.add(this.size, ele);
     }
@@ -66,6 +78,9 @@ link1.addLast('c');
 link1.toString();
 console.log('--------')
 
+console.log(link1.find(3));
+
+console.log('--------')
 link1.remove(3);
 link1.remove(2);
 link1.toString();

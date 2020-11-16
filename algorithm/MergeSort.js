@@ -1,3 +1,4 @@
+const ArrayGenerator = require('./ArrayGenerator');
 
 class MergeSort {
     constructor() {
@@ -7,26 +8,58 @@ class MergeSort {
         if (start >= end) {
             return;
         }
-        const mid = start + parseInt((end - start)/2);
-        // console.log(start, end, mid);
+        // const mid = start + Math.floor((end - start)/2);
+        const mid = Math.floor((end + start)/2);
         this.mergeSort(arr, start, mid);
         this.mergeSort(arr, mid + 1, end);
-        return this.merge(arr, start, mid, end);
+        arr = this.merge(arr, start, mid, end);
+        return arr;
     }
 
     merge(arr, start, mid, end) {
         let left = arr.slice(start, mid);
-        let right = arr.slice(mid, end + 1);
+        let right = arr.slice(mid, end);
+        console.log(start, mid, end);
         // console.log('left', left, 'right', right);
-        for(let i = start, l=0, r=0; i < end; i++) {
-            if (left[l] < right[r]) {
-                arr[i] = left[l];
-                l++;
+        // for(let i = start, l=0, r=0; i < (end - start + 1); i++) {
+        //     if (left.length === 0) {
+        //         arr[i] = right[r];
+        //         r++;
+        //         continue;
+        //     }
+        //     if (right.length === 0) {
+        //         arr[i] = left[l];
+        //         l++;
+        //         continue;
+        //     }
+        //     if (left[l] < right[r]) {
+        //         arr[i] = left[l];
+        //         l++;
+        //     } else {
+        //         arr[i] = right[r];
+        //         r++;
+        //     }
+        // }
+        let i = -1;
+        while(left.length || right.length) {
+            i++;
+            if (left.length && !right.length) {
+                arr[i] = left.shift();
+                continue;
+            }
+            if (right.length && !left.length) {
+                arr[i] = right.shift();
+                continue;
+            }
+            if (left[0] <= right[0]) {
+                arr[i] = left.shift();
             } else {
-                arr[i] = right[r];
-                r++;
+                arr[i] = right.shift();
             }
         }
+        
+        // arrRes = arrRes.concat(left, right);
+        console.log('merged', arr);
         return arr;
     }
 }
@@ -34,5 +67,11 @@ class MergeSort {
 const m = new MergeSort();
 
 const arr = [3, 6, 9, 2, 3, 5, 34];
-// console.log(m.merge(arr, 0, 3, 6));
-console.log('result', m.mergeSort(arr, 0, arr.length - 1));
+// const t1 = ArrayGenerator(8);
+const t1 = [62, 15, 74, 87, 19, 36, 48, 76];
+
+// console.log(m.merge(t1, 0, 3, ));
+console.log(t1.slice(0));
+console.log('result', m.mergeSort(t1, 0, t1.length));
+
+console.log('hold on');

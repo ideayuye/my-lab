@@ -15,6 +15,12 @@ class MergeSort {
         return arr;
     }
 
+    mergeSortBU(arr) {
+        for(let i = Math.ceil(arr.length/2), t = 1; i < arr.length; i = i/2) {
+            
+        }
+    }
+
     merge(arr, start, mid, end) {
         let left = arr.slice(start, mid + 1);
         let right = arr.slice(mid + 1, end + 1);

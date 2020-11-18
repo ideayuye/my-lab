@@ -16,16 +16,25 @@ class MergeSort {
     }
 
     mergeSortBU(arr) {
-        for(let i = Math.ceil(arr.length/2), t = 1; i < arr.length; i = i/2) {
-            
+        for(let i = 2; i <= arr.length * 2; i += i) {
+            console.log('step length', i);
+            //[start, mid, end]'
+            for(let t = 0; t * i <= arr.length; t++) {
+                let start = i*t;
+                let end = Math.min(i*(t+1) - 1, arr.length - 1);
+                let mid = Math.floor((start + i*(t+1) - 1)/2);
+                console.log('merge', start, end, mid);
+                this.merge(arr, start, mid, end);
+            }
         }
+        return arr;
     }
 
     merge(arr, start, mid, end) {
         let left = arr.slice(start, mid + 1);
         let right = arr.slice(mid + 1, end + 1);
         // console.log(start, end);
-        console.log('left', left, 'right', right);
+        // console.log('left', left, 'right', right);
         let i = start - 1;
         while(left.length || right.length) {
             i++;
@@ -57,6 +66,8 @@ const t1 = ArrayGenerator(9);
 
 // console.log(m.merge(t1, 0, 3, ));
 console.log(t1.slice(0));
-console.log('result', m.mergeSort(t1, 0, t1.length - 1));
+// console.log('result', m.mergeSort(t1, 0, t1.length - 1));
+
+console.log(m.mergeSortBU(t1));
 
 console.log('hold on');

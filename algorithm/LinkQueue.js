@@ -84,3 +84,5 @@ console.log('--------')
 link1.remove(3);
 link1.remove(2);
 link1.toString();
+
+module.exports = LinkQueue;

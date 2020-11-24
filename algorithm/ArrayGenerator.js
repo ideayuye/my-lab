@@ -7,4 +7,3 @@ module.exports = function ArrayGenerator(num) {
     }
     return arr;
 }
-5

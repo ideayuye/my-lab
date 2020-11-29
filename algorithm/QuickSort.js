@@ -46,17 +46,37 @@ class QuickSort {
         const pNum = this.getRandomInt(l, r);
         this.swap(arr, l, pNum);
         const pVal = arr[l];
-        let i = l + 1, j = r;
-        while(i<=j) {
+        let i = l + 1;
+        let j = r;
+        while(true) {
+            while(arr[i] < pVal && i <= r) i++;
+            while(arr[j] > pVal && j >= l + 1) j--;
+
+            if (i > j) {
+                break;
+            }
+
+            this.swap(arr, i, j);
             i++;
             j--;
         }
 
         // p 和 i 交换
-        this.swap(arr, l, i);
+        this.swap(arr, l, j);
 
         // 返回p的index
-        return i;
+        return j;
+    }
+
+    sort2Ways(arr, l, r) {
+        if (l >= r) {
+            return;
+        }
+        const p = this.partition2Ways(arr, l, r);
+        // console.log(p, l, r, 'xfa');
+        this.sort2Ways(arr, l, p - 1);
+        this.sort2Ways(arr, p + 1, r);
+        return arr;
     }
 
     getRandomInt(min, max) {
@@ -70,13 +90,14 @@ class QuickSort {
     }
 }
 
-// const t1 = ArrayGenerator(9);
-const t1 = ArraySortedGenerator(15000000);
+const t1 = ArrayGenerator(19000);
+// const t1 = ArraySortedGenerator(15);
 const m = new QuickSort();
 // console.log('origin', t1.slice());
 
 const tm1 = Date.now();
-m.sort(t1, 0, t1.length - 1).slice();
+const resSort = m.sort2Ways(t1, 0, t1.length - 1).slice();
 const tm2 = Date.now();
 
-console.log('hold on', (tm2-tm1)/1000);
+console.log('hold on', (tm2-tm1)/1000, tm2, tm1);
+// console.log(resSort);

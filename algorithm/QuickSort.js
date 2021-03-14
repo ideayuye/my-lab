@@ -68,6 +68,31 @@ class QuickSort {
         return j;
     }
 
+    partition3Ways(arr, l, r) {
+        const pNum = this.getRandomInt(l, r);
+        this.swap(arr, l, pNum);
+        const pVal = arr[l];
+        let lt = l;
+        let gt = r + 1;
+
+        for(let i = l + 1; i < gt;) {
+            if (arr[i] === pVal) {
+                i++;
+            } else if (arr[i] > pVal) {
+                this.swap(arr, i, gt);
+                gt--;
+            } else if (arr[i] < pVal) {
+                this.swap(arr, i, lt);
+                lt++;
+            }
+        }
+        this.swap(arr, l, lt);
+        return {
+            lt,
+            gt
+        }
+    }
+
     sort2Ways(arr, l, r) {
         if (l >= r) {
             return;
@@ -77,6 +102,15 @@ class QuickSort {
         this.sort2Ways(arr, l, p - 1);
         this.sort2Ways(arr, p + 1, r);
         return arr;
+    }
+
+    sort3Ways(arr, l, r) {
+        if (l >= r) {
+            return;
+        }
+        let obj = this.partition3Ways(arr, l, r);
+        this.sort3Ways(arr, l, obj.lt);
+        this.sort3Ways(arr, obj.gt, r);
     }
 
     getRandomInt(min, max) {

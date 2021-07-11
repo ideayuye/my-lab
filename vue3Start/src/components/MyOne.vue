@@ -14,5 +14,8 @@ export default {
             readersNumber
         };
     },
+    mounted() {
+        this.readersNumber ++;
+    }
 }
 </script>

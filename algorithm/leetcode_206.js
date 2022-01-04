@@ -8,10 +8,15 @@ link1.addLast('b1');
 link1.addLast('c');
 
 var reverseList = function(head) {
-    let cur = head;
-    let next = cur.next;
-    while(cur.next) {
-        cur = head.next;
-        
+    if (head == null || head.next == null) {
+        return head;
     }
+    const newHead = reverseList(head.next);
+    head.next.next = head;
+    head.next = null;
+    return newHead;
 };
+
+link1.dummyHead.next = reverseList(link1.dummyHead);
+console.log('now -->')
+console.log(link1.toString())

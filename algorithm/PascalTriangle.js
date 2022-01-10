@@ -10,14 +10,13 @@
             result.push(arr);
             continue;
         }
-        const nArr = [1];
         const preArr = result[i - 1]
-        preArr.forEach((x, index) => {
-            if (preArr.length > (index + 1) && index + 1 > 0) {
-                nArr.push(x + preArr[index + 1]);
+        const nArr = new Array(i+1).fill(1);
+        nArr.forEach((x, index) => {
+            if (index !==0 && index !== nArr.length -1) {
+                nArr[index] = preArr[index - 1] + preArr[index];
             }
         });
-        nArr.push(1);
         result.push(nArr);
     }
     return result;

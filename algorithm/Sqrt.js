@@ -1,6 +1,5 @@
 
 class Sqrt {
-
     
     data = [];
     blocks = [];
@@ -55,7 +54,7 @@ class Sqrt {
     update(i, val) {
         if (i < 0 || this.i >= this.N) return;
 
-        let index = i / this.B;
+        let index = parseInt(i / this.B);
         this.blocks[index] -= this.data[i];
         this.blocks[index] += val;
 
